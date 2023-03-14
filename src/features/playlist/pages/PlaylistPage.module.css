@@ -30,3 +30,8 @@
   view-transition-name: var(--video-id);
   contain: paint;
 }
+
+.title {
+  view-transition-name: var(--title-transition-name);
+  contain: paint;
+}

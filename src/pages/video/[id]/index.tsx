@@ -13,7 +13,9 @@ export const VideoPage = ({ videoInfo }: Props) => {
   const thumbnail = findLargestThumbnail(videoInfo.snippet.thumbnails)
   return (
     <main className={styles.main}>
-      <h1>{videoInfo.snippet.title}</h1>
+      <h1 className={styles.title} style={{ '--title-transition-name': `${videoInfo.id}-title` }}>
+        {videoInfo.snippet.title}
+      </h1>
       <Image
         src={thumbnail.url}
         alt={videoInfo.snippet.title}

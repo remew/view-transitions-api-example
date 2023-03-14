@@ -17,3 +17,8 @@
   margin-top: 1rem;
   white-space: break-spaces;
 }
+
+.title {
+  view-transition-name: var(--title-transition-name);
+  contain: paint;
+}

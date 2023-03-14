@@ -30,7 +30,12 @@ export const PlaylistPage = ({ detail, playlistItems }: Props) => {
                   className={styles.thumbnail}
                   style={{ '--video-id': item.snippet.resourceId.videoId }}
                 />
-                <span>{title}</span>
+                <span
+                  className={styles.title}
+                  style={{ '--title-transition-name': `${item.snippet.resourceId.videoId}-title` }}
+                >
+                  {title}
+                </span>
               </Link>
             </li>
           )
