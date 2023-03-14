@@ -1,4 +1,4 @@
-import { GetServerSideProps } from 'next'
+import { GetStaticPaths, GetStaticProps } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { PlaylistItem } from '~/features/youtube-api/types/PlaylistItem'
@@ -40,7 +40,14 @@ export const PlaylistPage = ({ detail, playlistItems }: Props) => {
 }
 export default PlaylistPage
 
-export const getServerSideProps: GetServerSideProps<Props, { id: string }> = async (context) => {
+export const getStaticPaths: GetStaticPaths<{ id: string }> = async (context) => {
+  return {
+    paths: [],
+    fallback: 'blocking',
+  }
+}
+
+export const getStaticProps: GetStaticProps<Props, { id: string }> = async (context) => {
   const id = context.params!.id
 
   const playlistItemsRes = await fetchPlaylistItems(id)
@@ -51,5 +58,6 @@ export const getServerSideProps: GetServerSideProps<Props, { id: string }> = asy
       playlistItems: playlistItemsRes.items,
       detail: playlistRes.items[0],
     },
+    revalidate: 60,
   }
 }
