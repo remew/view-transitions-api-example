@@ -9,6 +9,8 @@
   display: block;
   border-radius: 8px;
   margin-top: 1rem;
+  view-transition-name: var(--video-id);
+  contain: paint;
 }
 
 .description {

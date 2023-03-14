@@ -28,6 +28,7 @@ export const PlaylistPage = ({ detail, playlistItems }: Props) => {
                   width={thumbnails.default.width}
                   height={thumbnails.default.height}
                   className={styles.thumbnail}
+                  style={{ '--video-id': item.snippet.resourceId.videoId }}
                 />
                 <span>{title}</span>
               </Link>
