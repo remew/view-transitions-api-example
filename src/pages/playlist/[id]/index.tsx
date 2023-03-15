@@ -1,46 +1,38 @@
+import { Suspense } from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
-import { PlaylistItem } from '~/features/youtube-api/types/PlaylistItem'
-import { fetchPlaylistItems } from '~/features/youtube-api/clients/fetchPlaylistItems'
-import { PlaylistDetail } from '~/features/youtube-api/types/PlaylistDetail'
-import { fetchPlaylist } from '~/features/youtube-api/clients/fetchPlaylist'
+import { Playlist } from '~/features/playlist/components/Playlist'
+import { PlaylistSkeleton } from '~/features/playlist/components/PlaylistSkeleton'
+import { PlaylistTitleSkeleton } from '~/features/playlist/components/PlaylistTitleSkeleton'
+import { PlaylistTitle } from '~/features/playlist/components/PlaylistTitle'
 import styles from '~/features/playlist/pages/PlaylistPage.module.css'
+import { useIsSsr } from '~/features/shared/hooks/useIsSsr'
 
 type Props = {
-  playlistItems: Array<PlaylistItem>
-  detail: PlaylistDetail
+  playlistId: string
 }
 
-export const PlaylistPage = ({ detail, playlistItems }: Props) => {
+export const PlaylistPage = ({ playlistId }: Props) => {
+  const isSsr = useIsSsr()
   return (
     <main className={styles.main}>
-      <h1>{detail.snippet.title}</h1>
-      <ul className={styles.videoList}>
-        {playlistItems.map((item) => {
-          const { title, thumbnails } = item.snippet
-          return (
-            <li key={item.id}>
-              <Link href={`/video/${item.snippet.resourceId.videoId}`} className={styles.videoListItem}>
-                <Image
-                  src={thumbnails.default.url}
-                  alt={title}
-                  width={thumbnails.default.width}
-                  height={thumbnails.default.height}
-                  className={styles.thumbnail}
-                  style={{ '--thumbnail-transition-name': item.snippet.resourceId.videoId }}
-                />
-                <span
-                  className={styles.title}
-                  style={{ '--title-transition-name': `${item.snippet.resourceId.videoId}-title` }}
-                >
-                  {title}
-                </span>
-              </Link>
-            </li>
-          )
-        })}
-      </ul>
+      {isSsr ? (
+        <>
+          <PlaylistTitleSkeleton />
+          <PlaylistSkeleton />
+        </>
+      ) : (
+        <Suspense
+          fallback={
+            <>
+              <PlaylistTitleSkeleton />
+              <PlaylistSkeleton />
+            </>
+          }
+        >
+          <PlaylistTitle playlistId={playlistId} />
+          <Playlist playlistId={playlistId} />
+        </Suspense>
+      )}
     </main>
   )
 }
@@ -54,16 +46,9 @@ export const getStaticPaths: GetStaticPaths<{ id: string }> = async (context) =>
 }
 
 export const getStaticProps: GetStaticProps<Props, { id: string }> = async (context) => {
-  const id = context.params!.id
-
-  const playlistItemsRes = await fetchPlaylistItems(id)
-  const playlistRes = await fetchPlaylist(id)
-
   return {
     props: {
-      playlistItems: playlistItemsRes.items,
-      detail: playlistRes.items[0],
+      playlistId: context.params!.id,
     },
-    revalidate: 60,
   }
 }
