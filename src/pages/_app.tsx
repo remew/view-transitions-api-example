@@ -6,10 +6,12 @@ import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import { Deferred } from '~/libs/Deferred'
 import { isSsrContext } from '~/features/shared/hooks/useIsSsr'
+import { viewTransitionContext } from '~/features/shared/hooks/useCurrentViewTransition'
 
 export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient())
 
+  const [currentViewTransition, setViewTransition] = useState<ViewTransition | null>(null)
   const deferredRef = useRef<Deferred | null>()
   const { events } = useRouter()
 
@@ -18,9 +20,10 @@ export default function App({ Component, pageProps }: AppProps) {
       const d = new Deferred()
       deferredRef.current = d
       if (document.startViewTransition) {
-        document.startViewTransition(async () => {
+        const viewTransition = document.startViewTransition(async () => {
           await d.promise
         })
+        setViewTransition(viewTransition)
       }
     })
     events.on('routeChangeComplete', () => {
@@ -36,7 +39,9 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <isSsrContext.Provider value={isSsr}>
-        <Component {...pageProps} />
+        <viewTransitionContext.Provider value={currentViewTransition}>
+          <Component {...pageProps} />
+        </viewTransitionContext.Provider>
       </isSsrContext.Provider>
     </QueryClientProvider>
   )
