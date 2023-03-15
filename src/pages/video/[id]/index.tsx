@@ -22,7 +22,7 @@ export const VideoPage = ({ videoInfo }: Props) => {
         width={1280}
         height={720}
         className={styles.thumbnail}
-        style={{ '--video-id': videoInfo.id }}
+        style={{ '--thumbnail-transition-name': videoInfo.id }}
       />
       <div className={styles.description}>{videoInfo.snippet.description}</div>
     </main>

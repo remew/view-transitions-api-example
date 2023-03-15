@@ -27,7 +27,7 @@
   object-fit: cover;
   display: block;
   border-radius: 8px;
-  view-transition-name: var(--video-id);
+  view-transition-name: var(--thumbnail-transition-name);
   contain: paint;
 }
 
