@@ -1,0 +1,27 @@
+.root {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: block;
+  position: relative;
+  view-transition-name: var(--thumbnail-transition-name);
+  contain: paint;
+}
+
+.thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: #e43432;
+  transition: 0.3s;
+}
+
+.hidden {
+  opacity: 0;
+}
+
