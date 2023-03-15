@@ -16,7 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const { events } = useRouter()
 
   useEffect(() => {
-    events.on('routeChangeStart', () => {
+    const onRouteChangeStart = () => {
       const d = new Deferred()
       deferredRef.current = d
       if (document.startViewTransition) {
@@ -25,10 +25,16 @@ export default function App({ Component, pageProps }: AppProps) {
         })
         setViewTransition(viewTransition)
       }
-    })
-    events.on('routeChangeComplete', () => {
+    }
+    const onRouteChangeComplete = () => {
       deferredRef.current?.resolve()
-    })
+    }
+    events.on('routeChangeStart', onRouteChangeStart)
+    events.on('routeChangeComplete', onRouteChangeComplete)
+    return () => {
+      events.off('routeChangeStart', onRouteChangeStart)
+      events.off('routeChangeComplete', onRouteChangeComplete)
+    }
   }, [])
 
   const [isSsr, setIsSsr] = useState(true)
