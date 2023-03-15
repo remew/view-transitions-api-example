@@ -1,16 +1,12 @@
-.main {
-  padding: 1rem;
+.root {
+  display: flex;
+  flex-direction: column;
 }
 
-.thumbnail {
-  width: 100%;
-  max-width: 1280px;
-  object-fit: cover;
-  display: block;
-  border-radius: 8px;
+.content {
   margin-top: 1rem;
-  view-transition-name: var(--thumbnail-transition-name);
-  contain: paint;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .description {
