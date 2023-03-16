@@ -16,9 +16,7 @@ export const VideoPage = ({ videoInfo }: Props) => {
     <main className={styles.root}>
       <VideoThumbnail videoId={videoInfo.id} url={thumbnail.url} alt={videoInfo.snippet.title} />
       <section className={styles.content}>
-        <h1 className={styles.title} style={{ '--title-transition-name': `${videoInfo.id}-title` }}>
-          {videoInfo.snippet.title}
-        </h1>
+        <h1 className={styles.title}>{videoInfo.snippet.title}</h1>
         <div className={styles.description}>{videoInfo.snippet.description}</div>
       </section>
     </main>
