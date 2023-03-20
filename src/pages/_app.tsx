@@ -4,7 +4,7 @@ import { QueryClient } from '@tanstack/query-core'
 import { QueryClientProvider } from '@tanstack/react-query'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
-import { Deferred } from '~/libs/Deferred'
+import { Deferred } from '~/features/shared/libs/Deferred'
 import { isSsrContext } from '~/features/shared/hooks/useIsSsr'
 import { viewTransitionContext } from '~/features/shared/hooks/useCurrentViewTransition'
 
