@@ -1,0 +1,37 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.description {
+  white-space: break-spaces;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  list-style: none;
+}
+
+.gridItem {
+  box-shadow: rgba(50, 50, 93, 0.25) 0 2px 5px -1px, rgba(0, 0, 0, 0.3) 0 1px 3px -1px;
+  text-decoration: none;
+  display: block;
+  width: 128px;
+}
+
+.thumbnail {
+  display: block;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: normal;
+  padding: 0.5rem;
+  color: #333;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
