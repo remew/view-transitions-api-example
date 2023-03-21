@@ -1,6 +1,6 @@
+import { useCallback } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { fetchAlbums } from '~/features/album/client/fetchAlbums'
-import { useCallback } from 'react'
 
 const cacheKey = ['/api/albums'] as const
 
