@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 import Head from 'next/head'
-import { AlbumGrid } from '~/features/top/components/AlbumGrid'
+import { AlbumGrid } from '~/features/album/components/AlbumGrid'
 import styles from '~/features/top/pages/TopPage.module.css'
 
 const TopPage = () => {
