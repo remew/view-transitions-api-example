@@ -53,7 +53,7 @@ const data: Array<AlbumDetail> = [
     '美しい海辺',
     'beach',
     'ワーケーションを兼ねた海外旅行で撮影した写真です。\n地元の海と比べものにならないほど美しく、感動しました。',
-    '○○海の砂浜',
+    '○○海',
   ),
   createAlbumDetail(
     '3',
