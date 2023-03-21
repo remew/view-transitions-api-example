@@ -40,7 +40,7 @@ const createAlbumDetail = (
   }
 }
 
-const data: Array<AlbumDetail> = [
+export const data: Array<AlbumDetail> = [
   createAlbumDetail(
     '1',
     '凍りつきそうな南極',
