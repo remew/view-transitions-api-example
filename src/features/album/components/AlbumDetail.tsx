@@ -1,13 +1,21 @@
+import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from './AlbumDetail.module.css'
 import { AlbumDetail as AlbumDetailType } from '~/features/album/types/AlbumDetail'
+import { usePrefetchAlbumList } from '~/features/album/hooks/usePrefetchAlbumList'
+import { useDidMount } from '~/features/shared/hooks/useDidMount'
 
 type Props = {
   data: AlbumDetailType
 }
 
 export const AlbumDetail = ({ data }: Props) => {
+  const prefetchAlbums = usePrefetchAlbumList()
+  useDidMount(async () => {
+    await prefetchAlbums()
+  })
+
   return (
     <div className={styles.root}>
       <h2>{data.title}</h2>
