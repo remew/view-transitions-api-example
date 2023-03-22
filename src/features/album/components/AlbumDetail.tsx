@@ -30,6 +30,7 @@ export const AlbumDetail = ({ data }: Props) => {
                   alt={title}
                   width={128}
                   height={128}
+                  priority
                   className={styles.thumbnail}
                   style={{ '--image-transition-name': `albums-${data.slug}-${id}` }}
                 />

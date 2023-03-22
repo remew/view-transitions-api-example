@@ -22,6 +22,7 @@ export const AlbumGrid = () => {
                 alt={title}
                 width={128}
                 height={128}
+                priority
                 className={styles.thumbnail}
                 style={{ '--image-transition-name': `albums-${slug}-1` }}
               />
