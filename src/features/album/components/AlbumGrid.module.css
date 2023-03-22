@@ -1,19 +1,24 @@
 .grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
   gap: 1rem;
   list-style: none;
 }
 
 .gridItem {
   box-shadow: rgba(50, 50, 93, 0.25) 0 2px 5px -1px, rgba(0, 0, 0, 0.3) 0 1px 3px -1px;
-  text-decoration: none;
+}
+
+.anchor {
   display: block;
-  width: 128px;
+  text-decoration: none;
 }
 
 .thumbnail {
   display: block;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  height: auto;
   view-transition-name: var(--image-transition-name);
   contain: paint;
 }

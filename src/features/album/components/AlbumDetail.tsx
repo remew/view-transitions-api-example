@@ -23,8 +23,8 @@ export const AlbumDetail = ({ data }: Props) => {
       <ul className={styles.grid}>
         {data.photos.map(({ title, id, thumbnail }) => {
           return (
-            <li key={id}>
-              <Link href={`/${data.slug}/${id}`} className={styles.gridItem}>
+            <li key={id} className={styles.gridItem}>
+              <Link href={`/${data.slug}/${id}`} className={styles.anchor}>
                 <Image
                   src={thumbnail}
                   alt={title}
