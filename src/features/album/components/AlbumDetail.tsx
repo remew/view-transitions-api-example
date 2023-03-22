@@ -17,7 +17,14 @@ export const AlbumDetail = ({ data }: Props) => {
           return (
             <li key={id}>
               <Link href={`/${data.slug}/${id}`} className={styles.gridItem}>
-                <Image src={thumbnail} alt={title} width={128} height={128} className={styles.thumbnail} />
+                <Image
+                  src={thumbnail}
+                  alt={title}
+                  width={128}
+                  height={128}
+                  className={styles.thumbnail}
+                  style={{ '--image-transition-name': `albums-${data.slug}-${id}` }}
+                />
                 <h3 className={styles.title}>{title}</h3>
               </Link>
             </li>

@@ -6,10 +6,11 @@ import styles from '~/features/album/styles/PhotolPage.module.css'
 import { PhotoDetail as PhotoDetailType } from '~/features/album/types/PhotoDetail'
 
 type Props = {
+  slug: string
   data: PhotoDetailType
 }
 
-export const PhotoPage = ({ data }: Props) => {
+export const PhotoPage = ({ data, slug }: Props) => {
   return (
     <>
       <Head>
@@ -20,7 +21,7 @@ export const PhotoPage = ({ data }: Props) => {
       </Head>
       <main className={styles.main}>
         <h1 className={styles.heading}>Awesome Album App</h1>
-        <PhotoDetail data={data} />
+        <PhotoDetail slug={slug} data={data} />
       </main>
     </>
   )
@@ -47,6 +48,7 @@ export const getStaticProps: GetStaticProps<Props, { slug: string; id: string }>
 
   return {
     props: {
+      slug,
       data,
     },
     revalidate: 60,

@@ -14,6 +14,8 @@
 
 .thumbnail {
   display: block;
+  view-transition-name: var(--image-transition-name);
+  contain: paint;
 }
 
 .albumName {

@@ -9,6 +9,8 @@
   aspect-ratio: 1 / 1;
   width: 100%;
   height: auto;
+  view-transition-name: var(--image-transition-name);
+  contain: paint;
 }
 
 .info {

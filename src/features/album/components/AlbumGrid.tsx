@@ -17,7 +17,14 @@ export const AlbumGrid = () => {
         return (
           <li key={id}>
             <Link href={`/${slug}`} className={styles.gridItem}>
-              <Image src={thumbnail} alt={title} width={128} height={128} className={styles.thumbnail} />
+              <Image
+                src={thumbnail}
+                alt={title}
+                width={128}
+                height={128}
+                className={styles.thumbnail}
+                style={{ '--image-transition-name': `albums-${slug}-1` }}
+              />
               <h3 className={styles.albumName}>{title}</h3>
             </Link>
           </li>
