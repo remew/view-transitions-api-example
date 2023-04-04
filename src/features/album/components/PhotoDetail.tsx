@@ -31,7 +31,13 @@ export const PhotoDetail = ({ data, slug }: Props) => {
   const shouldShowOverlay = !loaded || !viewTransitionFinished
 
   return (
-    <div className={styles.root}>
+    <div
+      className={styles.root}
+      style={{
+        '--overlay-transition-name': `albums-${slug}-${data.id}`,
+        '--overlay-background': data.color,
+      }}
+    >
       <div className={styles.imageContainer}>
         <Image
           src={data.url}
@@ -39,14 +45,11 @@ export const PhotoDetail = ({ data, slug }: Props) => {
           width={2048}
           height={2048}
           priority
-          className={clsx(styles.image, shouldShowOverlay ? styles.hidden : null)}
+          className={clsx(styles.image, shouldShowOverlay ? styles.hidden : styles.transitionTarget)}
           onLoadingComplete={onLoadingComplete}
         />
         <div className={styles.overlayContainer}>
-          <div
-            className={clsx([styles.overlay, shouldShowOverlay ? null : styles.hidden])}
-            style={{ '--overlay-transition-name': `albums-${slug}-${data.id}`, '--overlay-background': data.color }}
-          />
+          <div className={clsx(styles.overlay, shouldShowOverlay ? styles.transitionTarget : styles.hidden)} />
         </div>
       </div>
       <div className={styles.info}>

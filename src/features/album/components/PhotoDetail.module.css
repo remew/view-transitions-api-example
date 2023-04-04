@@ -4,6 +4,11 @@
   gap: 1rem;
 }
 
+.transitionTarget {
+  view-transition-name: var(--overlay-transition-name);
+  contain: paint;
+}
+
 .imageContainer {
   display: block;
   aspect-ratio: 1 / 1;
@@ -30,8 +35,6 @@
   width: 100%;
   height: auto;
   background: var(--overlay-background);
-  view-transition-name: var(--overlay-transition-name);
-  contain: paint;
   transition: 0.3s;
 }
 
