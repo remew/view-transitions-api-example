@@ -17,6 +17,8 @@ export default function App({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     const onRouteChangeStart = () => {
+      console.log('routeChangeStart')
+      console.log('deferredRef.current', deferredRef.current)
       const d = new Deferred()
       deferredRef.current = d
       if (document.startViewTransition) {
@@ -27,6 +29,8 @@ export default function App({ Component, pageProps }: AppProps) {
       }
     }
     const onRouteChangeComplete = () => {
+      console.log('routeChangeComplete')
+      console.log('deferredRef.current', deferredRef.current)
       deferredRef.current?.resolve()
     }
     events.on('routeChangeStart', onRouteChangeStart)

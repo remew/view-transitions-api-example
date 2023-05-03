@@ -1,4 +1,4 @@
-import { GetStaticPaths, GetStaticProps } from 'next'
+import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import { fetchPhotoInfo } from '~/features/album/client/fetchPhotoInfo'
 import { PhotoDetail } from '~/features/album/components/PhotoDetail'
@@ -29,14 +29,7 @@ export const PhotoPage = ({ data, slug }: Props) => {
 }
 export default PhotoPage
 
-export const getStaticPaths: GetStaticPaths<{ slug: string; id: string }> = async (context) => {
-  return {
-    paths: [],
-    fallback: 'blocking',
-  }
-}
-
-export const getStaticProps: GetStaticProps<Props, { slug: string; id: string }> = async (context) => {
+export const getServerSideProps: GetServerSideProps<Props, { slug: string; id: string }> = async (context) => {
   const slug = context.params!.slug
   const id = context.params!.id
 
@@ -52,6 +45,5 @@ export const getStaticProps: GetStaticProps<Props, { slug: string; id: string }>
       slug,
       data,
     },
-    revalidate: 60,
   }
 }
