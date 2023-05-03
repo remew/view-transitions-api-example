@@ -1,4 +1,4 @@
-import { GetStaticPaths, GetStaticProps } from 'next'
+import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import styles from '~/features/album/styles/AlbumDetailPage.module.css'
 import { AlbumDetail } from '~/features/album/components/AlbumDetail'
@@ -28,14 +28,7 @@ export const AlbumDetailPage = ({ data }: Props) => {
 }
 export default AlbumDetailPage
 
-export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
-  return {
-    paths: [],
-    fallback: 'blocking',
-  }
-}
-
-export const getStaticProps: GetStaticProps<Props, { slug: string }> = async (context) => {
+export const getServerSideProps: GetServerSideProps<Props, { slug: string }> = async (context) => {
   const slug = context.params!.slug
   const data = await fetchAlbumDetail(slug)
 
@@ -49,6 +42,5 @@ export const getStaticProps: GetStaticProps<Props, { slug: string }> = async (co
     props: {
       data,
     },
-    revalidate: 60,
   }
 }
